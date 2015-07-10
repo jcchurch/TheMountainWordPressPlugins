@@ -1,39 +1,25 @@
 <?php
 
-function ap_generate_form() {
-    global $wpdb;
-
-/*
- *   Read mtn_application table were application data is stored
- *   Build table in the top panel where the use can then use a
- *   radio button and select button to display/update date in
- *   lower left/right panels.
- */
-
-    $table_name = "mtn_application";
-    $sql = 'Select * from ' . $table_name;
-    $applications = $wpdb->get_results($sql,ARRAY_A);
-
+function displayTableOfApplicants($applications, $columns) {
     ?>
     <form method="post" action="" name="applicationlist">
         <h2>List of Applications for Mountain Positions</h2>
         <Table style="border-style: solid">
         <tr>
-            <td>Select</td>
-            <td>ID</td>
-            <td>First Name</td>
-            <td>Last Name</td>
-            <td>Address 1</td>
-            <td>City</td>
-            <td>State</td>
-            <td>Comments</td>
-            <td>Status</td>
+        <td>Select</td>
+
+        <?php
+          foreach ($columns as $column) {
+              echo "<td>{$column['name']}</td>\n";
+          }
+        ?>
+
         </tr>
         <?php
 /* Loop through result set from database query and display rows of data */
 
-        foreach ($applications as $key => $value) {
-                echo  '<tr>' ;
+    foreach ($applications as $key => $value) {
+        echo  '<tr>';
 
 /* Tricky logic to set radio button. The table is built on each loop of the foreach loop.
 
@@ -50,22 +36,17 @@ function ap_generate_form() {
 */
 
     if($_SERVER['REQUEST_METHOD'] == "POST" && $key == $_POST["active"]) {
-        echo '<td> <input type="radio" name="active" value="'. $key . '" checked> </td>';
+        echo "<td><input type='radio' name='active' value='$key' checked></td>";
     }
     else {
-        echo '<td> <input type="radio" name="active" value="'. $key . '"> </td>';
+        echo "<td><input type='radio' name='active' value='$key'></td>";
     }
 
-    echo  '<td>' . $applications[$key]['ap_id']. '</td>';
-    echo  '<td>' . $applications[$key]['ap_firstname'] . '</td>';
-    echo  '<td>' . $applications[$key]['ap_lastname'] . '</td>';
-    echo  '<td>' . $applications[$key]['ap_address1'] . '</td>';
-    echo  '<td>' . $applications[$key]['ap_city'] . '</td>';
-    echo  '<td>' . $applications[$key]['ap_state']. '</td>';
-    echo  '<td>' . $applications[$key]['ap_comments'] . '</td>';
-    echo  '<td>' . $applications[$key]['ap_status'] . '</td>';
+    foreach ($columns as $column) {
+        echo "<td>{$applications[$key][$column['tag']]}</td>\n";
+    }
 
- } /* foreach loop */
+}
         ?>
         </table>
         <br>
@@ -74,6 +55,35 @@ function ap_generate_form() {
         <br>
 
 <?php
+}
+
+function ap_generate_form() {
+    global $wpdb;
+
+/*
+ *   Read mtn_application table were application data is stored
+ *   Build table in the top panel where the use can then use a
+ *   radio button and select button to display/update date in
+ *   lower left/right panels.
+ */
+
+    $table_name = "mtn_application";
+    $sql = 'Select * from ' . $table_name;
+    $applications = $wpdb->get_results($sql,ARRAY_A);
+
+    $columns = array( 
+                    array( "tag" => "ap_id", "name" => "ID" )
+                  , array( "tag" => "ap_firstname", "name" => "First Name")
+                  , array( "tag" => "ap_lastname", "name" => "Last Name")
+                  , array( "tag" => "ap_address1", "name" => "Address 1")
+                  , array( "tag" => "ap_address2", "name" => "Address 2")
+                  , array( "tag" => "ap_city", "name" => "City")
+                  , array( "tag" => "ap_state", "name" => "State")
+                  , array( "tag" => "ap_comments", "name" => "Comments")
+                  , array( "tag" => "ap_status", "name" => "Status")
+                  );
+
+    displayTableOfApplicants($applications, $columns);
 
 /* Set error message "No rows selected" as appropriate */
 
@@ -109,88 +119,39 @@ if (!empty($_POST['application_list'])) {
 
 /*          if(empty(isset($_POST["active"])))  this logic fails on plugin activation*/
 
-            if (empty($selected_row)) {
-                    echo '<label> First Name: </label>';
-                    echo '<br><label> Last Name   </label>';
-                    echo '<br><label> Address 1   </label>';
-                    echo '<br><label> Address 2   </label>';
-                    echo '<br><label> City        </label>';
-                    echo '<br><label> State       </label>';
-                    echo '<br><label> Zip         </label>';
-                    echo '<br><label> Comments    </label>';
-                    echo '<br><label> Apply Date  </label>';
-                    echo '<br> <br>';
-                    echo '<label> Current Status  </lablel>';
-                    echo '<br> <br>';
-                    echo '<label> New Status  </lablel>';
-             }
-             else {
-
-                    echo '<label class="mtnlabelClass"> First Name</label>';
-                    echo  '<label class="mtndisplayClass" >' . $applications[$selected_row]['ap_firstname'] . '</label>';
-
-                    echo '<br><label  class="mtnlabelClass">Last Name</label>';
-                    echo  '<label class="mtndisplayClass" >' . $applications[$selected_row]['ap_lastname'] . '</label>';
-
-                    echo '<br><label  class="mtnlabelClass">Address 1</label>';
-                    echo  '<label class="mtndisplayClass" >' . $applications[$selected_row]['ap_address1'] . '</label>';
-
-                    echo '<br><label  class="mtnlabelClass">Address 1</label>';
-                    echo  '<label class="mtndisplayClass" >' . $applications[$selected_row]['ap_address1'] . '</label>';
-
-                    echo '<br><label class="mtnlabelClass">City</label>';
-                    echo  '<label class="mtndisplayClass" >' . $applications[$selected_row]['ap_city'] . '</label>';
-
-                    echo '<br><label  class="mtnlabelClass">State</label>';
-                    echo  '<label class="mtndisplayClass" >' . $applications[$selected_row]['ap_state'] . '</label>';
-
-                    echo '<br><label  class="mtnlabelClass">Zip</label>';
-                    echo  '<label class="mtndisplayClass" >' . $applications[$selected_row]['ap_zip'] . '</label>';
-
-                    echo '<br><label class="mtnlabelClass" >Apply Date</label>';
-                    echo  '<label class="mtndisplayClass" >' . $applications[$selected_row]['ap_apply_date'] . '</label>';
-
-                    echo '<br><label class="mtnlabelClass" >Comments </label>';
-                    echo  '<label class="mtntextareadisplayClass">' . $applications[$selected_row]['ap_comments'] . '</label>';
-
-                    echo '<br><label class="mtnlabelClass">Status</label>';
-                    echo  '<label class="mtndisplayClass" >' . $applications[$selected_row]['ap_status'] . '</label>';
-
-                    echo '<br>';
-
-                    $curr_status = $applications[$selected_row]['ap_status'];
-                    (($curr_status == 'Submitted') ? ($submt = 'selected') : ($submt =''));
-                    (($curr_status == 'In Progress') ? ($inprog = 'selected') : ($inprog =''));
-                    (($curr_status == 'Approved') ? ($approv = 'selected') : ($approv =''));
-                    (($curr_status == 'On Hold') ? ($onhold = 'selected') : ($onhold =''));
-                    (($curr_status == 'Withdrawn') ? ($withdrw = 'selected') : ($withdrw =''));
-                    ?>
-                    <label> New Status  </lablel>
-                    <select class="mtnselect" name="status">
-                    <option value="">Select▾</option>
-                    <?php
-                    If($curr_status != 'Submitted') {echo '<option value="Submitted">Submitted</option>';}
-                    If($curr_status != 'In Progress') {echo '<option value="In Progress">In Progress</option>';}
-                    If($curr_status != 'Approved') {echo '<option value="Approved">Approved</option>';}
-                    If($curr_status != 'On Hold') {echo '<option value="On Hold">On Hold</option>';}
-                    If($curr_status != 'Withdrawn') {echo '<option value="Withdrawn">Withdrawn</option>';}
-                    ?>
-                    </select>
-                    <?php
-
+            echo "<ul>\n";
+            foreach ($columns as $column) {
+                if ($column['tag'] != "ap_comments") {
+                    if (empty($selected_row)) {
+                        echo "<li><label>{$column['name']}</label></li>\n";
+                    }
+                    else {
+                        echo "<li><label class='mtnlabelClass'>{$column['name']}</label> <label class='mtndisplayClass'>{$applications[$selected_row][$column['name']]}</label></li>";
+                    }
                 }
-                ?>
-                        <br>
-                        <span class="labelClass"> Comments: </span>
-                        <textarea class="mtntextAreaClass" name="staff_comments" >
-                            <?php if(isset ($_POST['staff_comments']))
-                            {
-                                $staff_comments = sanitize_text_field($_POST['staff_comments']);
-                                $staff_comments = ($_POST['staff_comments']);
-/*                                  echo $staff_comments;  */
-                            }?>
-                    </textarea>
-                <?php
+            }
+
+            $selectionOptions = array('Submitted', 'In Progress', 'Approved', 'On Hold', 'Withdrawn');
+            ?>
+            <li><label>New Status</label>
+            <select class="mtnselect" name="status">
+            <option value="">Select▾</option>
+            <?php
+                foreach ($selectionOptions as $anOption) {
+                    echo "<option value='$anOption'>$anOption</option>\n";
+                }
+            ?>
+            </select>
+            </li>
+            <li><label>Comments:</label>
+                 <textarea class="mtntextAreaClass" name="staff_comments" ><?php
+                     if(isset ($_POST['staff_comments'])) {
+                         echo sanitize_text_field($_POST['staff_comments']);
+                     }
+                 ?></textarea>
+            </li>
+            </ul>
+<?php
 
 
 /*
@@ -214,15 +175,12 @@ if (!empty($_POST['application_list'])) {
             <?php
 
 
-                if(!empty($applications[$selected_row]['ap_id']))
-                    {
+                if(!empty($applications[$selected_row]['ap_id'])) {
                         $table_name = "mtn_meta_data";
                         $sql = 'Select * from ' . $table_name . ' where mm_object_id = ' . $applications[$selected_row]['ap_id'] . ' order by mm_insert_date DESC';
                         $meta_data = $wpdb->get_results($sql,ARRAY_A);
 
-                        foreach ($meta_data as $key => $value)
-                        {
-
+                        foreach ($meta_data as $key => $value) {
                             echo  '<tr>' ;
                             echo  '<td style="width: 230px">' .  $meta_data[$key]['mm_meta_data']. '</td>';
                             echo  '<td style="width: 95px">' .  $meta_data[$key]['mm_meta_user']. '</td>';
