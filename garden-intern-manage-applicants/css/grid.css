@@ -1,0 +1,140 @@
+
+nelleft {
+    display: inline-block; 
+    background: #ffffff;
+    height: 375px;
+    width: 400px;
+    margin: 0px; 
+    padding: 10px; 
+    float: left;
+    border: solid;
+}
+
+.panelright {
+    display: inline-block; 
+    background: #ffffff; 
+    height: 375px;
+    width: 505px;
+    margin: 0px; 
+    padding: 10px; 
+    float: right;
+    border: solid;
+}
+
+.panelrightlines {
+    display: inline-block; 
+    background: #ffffff; 
+    position: relative;
+    top: -343px;
+    left: -30px;
+    float: right;
+}
+
+.panelsuccess {
+    display: inline-block; 
+    background: #fffff0; 
+    position: relative;
+    top: -350px;
+    left: 25px;
+    height: 200px;
+    border: solid;
+    width: 350px;
+    margin: 0px; 
+    padding: 10px; 
+    float: left;
+}
+
+.mtnlabelClass{
+    float: left;
+    width: 60px;
+}
+        
+.mtndisplayClass {
+    height: 15px;
+    font-weight: bold;
+    margin-left: 100px;
+    margin: 4px;
+    color: red;
+}    
+    
+.mtntextareadisplayClass {
+    height: 45px;
+    font-weight: bold;
+    margin-left: 200px;
+    margin: 4px;
+    color: red;
+    display: inline;
+}           
+        
+.errorClass {
+    color: #FF0000;
+}     
+
+.mtncommentstd_size {    
+  width:200px; 
+  height:50px;
+  max-width:200px;
+  min-width:200px; 
+  max-height:50px; 
+  min-height:50px;
+  **overflow:hidden;** /*(Optional)This might be useful for some overflow contents*/   
+}
+        
+.mtnselect {
+    border-width:2px;   
+    border-style:inset;
+    margin-left: 100px;
+    margin: 4px;
+    cursor:pointer;
+    height: 20px;
+    size: 10;
+     content: ' ▾';
+}
+
+.mtntable, th, td {
+    border: 1px solid black;
+}  
+
+.mtntextAreaClass{
+    height:55px;
+    width: 210px;
+    border-width:2px;   
+    border-style:inset;
+    margin: 4px;
+    cursor:pointer;    
+}
+
+.panelsubmit {
+    background: #fffff0;
+    min-width: 100px;
+    float: left;
+    width: 100px;
+    height:120px;
+    margin-bottom:0;
+    box-shadow:0;
+}
+
+.panel2 {
+    min-width: 100px;
+    width: 100px;
+
+}
+
+.panel3 {
+    min-width: 245px;
+    width: 245px;
+    margin-top:0px;
+}   
+
+.left {
+    float:left;
+    width:75%;
+    overflow:hidden;
+}
+
+.right {
+    float:left;
+    width:25%;
+    overflow:hidden;
+} 
+
