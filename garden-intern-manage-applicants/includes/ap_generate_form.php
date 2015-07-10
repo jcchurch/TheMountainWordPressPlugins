@@ -50,12 +50,10 @@ function ap_generate_form() {
 */
 
     if($_SERVER['REQUEST_METHOD'] == "POST" && $key == $_POST["active"]) {
-        if ($key == $_POST["active"]) {
-            echo '<td> <input type="radio" name="active" value="'. $key . '" checked> </td>';
-        }
-        else {
-            echo '<td> <input type="radio" name="active" value="'. $key . '"> </td>';
-        }
+        echo '<td> <input type="radio" name="active" value="'. $key . '" checked> </td>';
+    }
+    else {
+        echo '<td> <input type="radio" name="active" value="'. $key . '"> </td>';
     }
 
     echo  '<td>' . $applications[$key]['ap_id']. '</td>';
@@ -72,23 +70,19 @@ function ap_generate_form() {
         </table>
         <br>
         <input type="submit" name="application_list" value="Select Applicant">
+        </form>
         <br>
 
 <?php
 
 /* Set error message "No rows selected" as appropriate */
 
-
-/* if (isset($_POST['application_list']) ) */
-
-if (!empty($_POST['application_list']))
-{
-    if(empty($_POST['active']))
-/*  if(empty(isset($_POST['active']))) */
-    {
+if (!empty($_POST['application_list'])) {
+    if(empty($_POST['active'])) {
         echo '<font color="red">No row selected. Try again.</font>';
-    }else{
-    echo "<font> </font>";
+    }
+    else {
+        echo "<font> </font>";
     }
 }
 /*  Mountain Staff Update Form
@@ -244,7 +238,6 @@ if (!empty($_POST['application_list']))
         <br></br>
         <input type="submit" name="application_form" value="Update" ></input>
 
-        </form>
     </form>
 
     <?php
