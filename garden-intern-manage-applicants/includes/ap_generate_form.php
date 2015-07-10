@@ -51,10 +51,7 @@ function ap_generate_form() {
 
     if($_SERVER['REQUEST_METHOD'] == "POST" && $key == $_POST["active"]) {
         echo '<td> <input type="radio" name="active" value="'. $key . '" checked> </td>';
-<<<<<<< HEAD
     }
-=======
->>>>>>> e2c15e81e36325857fdf61263da2a235458b4a8d
     else {
         echo '<td> <input type="radio" name="active" value="'. $key . '"> </td>';
     }
