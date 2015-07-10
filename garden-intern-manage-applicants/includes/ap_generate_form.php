@@ -1,11 +1,5 @@
 <?php
 
-function theme_name_scripts() {
-    wp_enqueue_style( 'garden-css', plugins_url('css/style.css', __FILE__ ) );
-}
-
-add_action('wp_enqueue_scripts', 'theme_name_scripts');
-
 function ap_generate_form() {
     global $wpdb;
 
@@ -362,4 +356,3 @@ if (!empty($_POST['application_list']))
 } /* end of function ap_generate_form ()*/
 
 ?>
-

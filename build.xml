@@ -1,0 +1,21 @@
+<project name="MyProject" default="build" basedir=".">
+  <description>
+      Test and Zip WordPress Plugins
+  </description>
+
+  <target name="build" depends="gardeninternmanage" description="Zip everything">
+  </target>
+
+  <target name="gardeninternmanage" description="Zip garden-intern-manage-applicants">
+     <exec executable="zip">
+         <arg value="-r"/>
+         <arg value="garden-intern-manage-applicants.zip"/>
+         <arg value="garden-intern-manage-applicants"/>
+     </exec>
+  </target>
+
+  <target name="clean" description="clean up">
+    <delete file="garden-intern-manage-applicants.zip"/>
+  </target>
+
+</project>
