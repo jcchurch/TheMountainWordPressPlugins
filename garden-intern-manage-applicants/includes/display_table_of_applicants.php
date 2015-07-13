@@ -16,7 +16,7 @@ function displayTableOfApplicants($applications, $columns) {
 ?>
     <form method="post" action="" name="applicationlist">
         <h2>List of Applications for Mountain Positions</h2>
-        <Table style="border-style: solid">
+        <table style="border-style: solid">
         <tr>
         <td>Select</td>
 <?php
