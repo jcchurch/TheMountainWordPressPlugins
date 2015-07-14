@@ -16,9 +16,6 @@ function ap_generate_form() {
 
     $applications = pullApplicants();
     $row = pullActiveRecord();
-    $staffComments = pullStaffComments();
-    $newStatus = pullNewStatus();
-
     $columns = array( 
                     array( "tag" => "ap_id", "name" => "ID" )
                   , array( "tag" => "ap_firstname", "name" => "First Name")
@@ -35,6 +32,9 @@ function ap_generate_form() {
         displayGardenUpdateForm($applications[$row], $row, $columns, $staffComments);
 
         if (updateButtonClicked()) {
+            $staffComments = pullStaffComments();
+            $newStatus = pullNewStatus();
+
             updateApplicant($applications[$row]['ap_id'],
                             $applications[$row]['ap_status'],
                             $newStatus,
