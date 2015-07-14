@@ -12,7 +12,11 @@
  *        column id found in $applicantions)
  *
  */
-function displayTableOfApplicants($applications, $columns) {
+function displayTableOfApplicants($applications, $row, $columns) {
+
+    if (applicationListButtonClicked() && $row < 0) { 
+        echo '<p><font color="red">No row selected. Try again.</font></p>'; 
+    }
 ?>
     <form method="post" action="" name="applicationlist">
         <h2>List of Applications for Mountain Positions</h2>
@@ -30,7 +34,7 @@ function displayTableOfApplicants($applications, $columns) {
     foreach ($applications as $index => $record) {
         echo  '<tr>';
 
-        if($_SERVER['REQUEST_METHOD'] == "POST" && "row$index" == $_POST["active"]) {
+        if($index == $row) {
             echo "<td><input type='radio' name='active' value='row$index' checked></td>";
         }
         else {
@@ -51,13 +55,8 @@ function displayTableOfApplicants($applications, $columns) {
         <br>
 <?php
 
-    if (!empty($_POST['application_list'])) { 
-        if(empty($_POST['active'])) { 
-            echo '<font color="red">No row selected. Try again.</font>'; 
-        } 
-        else { 
-            echo "<font> </font>"; 
-        } 
+    if (applicationListButtonClicked() && $row < 0) { 
+        echo '<p><font color="red">No row selected. Try again.</font></p>'; 
     }
 }
 ?>

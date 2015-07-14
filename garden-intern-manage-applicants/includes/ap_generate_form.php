@@ -3,10 +3,10 @@
 require('display_table_of_applicants.php');
 require('display_garden_update_form.php');
 require('update_applicant.php');
+require('pull_database.php');
+require('pull_post_data.php');
 
 function ap_generate_form() {
-    global $wpdb;
-
 /*
  *   Read mtn_application table were application data is stored
  *   Build table in the top panel where the use can then use a
@@ -14,9 +14,10 @@ function ap_generate_form() {
  *   lower left/right panels.
  */
 
-    $table_name = "mtn_application";
-    $sql = 'Select * from ' . $table_name;
-    $applications = $wpdb->get_results($sql,ARRAY_A);
+    $applications = pullApplicants();
+    $row = pullActiveRecord();
+    $staffComments = pullStaffComments();
+    $newStatus = pullNewStatus();
 
     $columns = array( 
                     array( "tag" => "ap_id", "name" => "ID" )
@@ -30,9 +31,19 @@ function ap_generate_form() {
                   , array( "tag" => "ap_status", "name" => "Status")
                   );
 
-    displayGardenUpdateForm($applications, $columns);
-    updateApplicant();
-    displayTableOfApplicants($applications, $columns);
+    if ($row >= 0 && $row < count($applications)) {
+        displayGardenUpdateForm($applications[$row], $row, $columns, $staffComments);
+
+        if (updateButtonClicked()) {
+            updateApplicant($applications[$row]['ap_id'],
+                            $applications[$row]['ap_status'],
+                            $newStatus,
+                            $staffComments);
+            $applications = pullApplicants();
+        }
+    }
+
+    displayTableOfApplicants($applications, $row, $columns);
 }
 
 ?>
