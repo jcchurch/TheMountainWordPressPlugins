@@ -1,0 +1,4 @@
+open mountain
+cd mountaincenters/wp-content/plugins/
+rm -rf garden-intern-manage-applicants
+put -R garden-intern-manage-applicants 

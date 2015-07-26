@@ -3,10 +3,17 @@
       Test and Zip WordPress Plugins
   </description>
 
-  <target name="build" depends="gardeninternmanage" description="Zip everything">
+  <target name="build" depends="uploadgardeninternmanage" description="Upload everything">
   </target>
 
-  <target name="gardeninternmanage" description="Zip garden-intern-manage-applicants">
+  <target name="uploadgardeninternmanage" description="Uploads new garden-intern-manage-applicants">
+     <exec executable="ncftp">
+         <arg value="<">
+         <arg value="upload_garden_intern_manage_applicants">
+     </exec>
+  </target>
+
+  <target name="zipgardeninternmanage" description="Zip garden-intern-manage-applicants">
      <exec executable="zip">
          <arg value="-r"/>
          <arg value="garden-intern-manage-applicants.zip"/>
