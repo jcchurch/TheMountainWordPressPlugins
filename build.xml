@@ -26,5 +26,4 @@
   <target name="clean" description="clean up">
     <delete file="garden-intern-manage-applicants.zip"/>
   </target>
-
 </project>

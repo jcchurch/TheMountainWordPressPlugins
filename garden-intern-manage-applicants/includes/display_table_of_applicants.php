@@ -6,11 +6,13 @@
  * @param $applications A sequential array of applicantions, where each
  *        element is mapped to a dictionary of values pulled from the
  *        WordPress database.
+ * @param $id The id of the checked record
  * @param $columns A sequential array of columns, where each element is
  *        mapped to a dictionary containing two values: 'name' (the
  *        English representation of the column) and 'tag' (the database
  *        column id found in $applicantions)
  *
+ * @return nothing - Contents displayed on the screen
  */
 function displayTableOfApplicants($applications, $id, $columns) {
 
@@ -20,6 +22,7 @@ function displayTableOfApplicants($applications, $id, $columns) {
 ?>
     <form method="post" action="" name="applicationlist">
         <p><h2>List of Applications for Mountain Positions</h2></p>
+
         <table class="scrollTable">
         <thead class="fixedHeader">
         <tr>

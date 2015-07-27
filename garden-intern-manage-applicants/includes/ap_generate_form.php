@@ -1,5 +1,6 @@
 <?php
 
+require('display_filter_menu.php');
 require('display_table_of_applicants.php');
 require('display_garden_update_form.php');
 require('update_applicant.php');
@@ -48,6 +49,7 @@ function ap_generate_form() {
         }
     }
 
+    displayFilterMenu();
     displayTableOfApplicants($applications, $id, $columns);
 }
 
