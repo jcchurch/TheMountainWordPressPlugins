@@ -88,6 +88,7 @@ function pullFilterCriteria() {
     $filterSelections = array(
           'filterStatus' => 'ap_status'
         , 'filterLastName' => 'ap_lastname'
+        , 'filterSession' => 'ap_session'
     );
 
     if (filterButtonClicked()) {

@@ -26,12 +26,10 @@ function ap_generate_form() {
                     array( "tag" => "ap_id", "name" => "ID" )
                   , array( "tag" => "ap_firstname", "name" => "First Name")
                   , array( "tag" => "ap_lastname", "name" => "Last Name")
-                  , array( "tag" => "ap_address1", "name" => "Address 1")
-                  , array( "tag" => "ap_address2", "name" => "Address 2")
                   , array( "tag" => "ap_city", "name" => "City")
                   , array( "tag" => "ap_state", "name" => "State")
-                  , array( "tag" => "ap_comments", "name" => "Comments")
                   , array( "tag" => "ap_status", "name" => "Status")
+                  , array( "tag" => "ap_session", "name" => "Session")
                   );
 
     if ($id >= 0) {

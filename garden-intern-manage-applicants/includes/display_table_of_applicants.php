@@ -21,12 +21,12 @@ function displayTableOfApplicants($applications, $id, $columns) {
     }
 ?>
     <form method="post" action="" name="applicationlist">
-        <p><h2>List of Applications for Mountain Positions</h2></p>
+        <h2>List of Applications for Mountain Positions</h2>
 
         <table class="scrollTable">
         <thead class="fixedHeader">
         <tr>
-        <th>Select</td>
+        <th>Select</th>
 <?php
           foreach ($columns as $column) {
               echo "<th>{$column['name']}</th>\n";
