@@ -45,4 +45,26 @@ function pullMetaData($id) {
     return $wpdb->get_results($sql,ARRAY_A);
 }
 
+/**
+ * Pulls unique values from a specified column of a specified table.
+ *
+ * @param $table_name The specified table
+ * @param $column The specified column
+ * @return an array of each value (duplicates removed) in the column of the table.
+ */
+function pullUniqueValues($table_name, $column) {
+    global $wpdb;
+
+    $sql = "SELECT $column FROM $table_name";
+    $results = $wpdb->get_results($sql,ARRAY_A);
+
+    $uniqueValues = array();
+
+    foreach ($results as $index => $record) {
+        $uniqueValues[ $record[$column] ] = 1;
+    }
+
+    return array_keys($uniqueValues);
+}
+
 ?>
