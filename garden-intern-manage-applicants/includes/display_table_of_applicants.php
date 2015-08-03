@@ -19,16 +19,19 @@ function displayTableOfApplicants($applications, $id, $columns) {
     }
 ?>
     <form method="post" action="" name="applicationlist">
-        <h2>List of Applications for Mountain Positions</h2>
-        <table style="border-style: solid">
+        <p><h2>List of Applications for Mountain Positions</h2></p>
+        <table class="scrollTable">
+        <thead class="fixedHeader">
         <tr>
-        <td>Select</td>
+        <th>Select</td>
 <?php
           foreach ($columns as $column) {
-              echo "<td>{$column['name']}</td>\n";
+              echo "<th>{$column['name']}</th>\n";
           }
 ?>
         </tr>
+        </thead>
+        <tbody class="scrollContent">
 
 <?php
     foreach ($applications as $index => $record) {
@@ -50,6 +53,7 @@ function displayTableOfApplicants($applications, $id, $columns) {
         echo  '</tr>';
     }
 ?>
+        </tbody>
         </table>
         <br>
         <input type="submit" name="application_list" value="Select Applicant">

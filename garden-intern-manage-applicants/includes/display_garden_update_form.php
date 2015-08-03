@@ -29,7 +29,7 @@ function displayGardenUpdateForm($anApplicant, $id, $columns, $staffComments) {
         }
     }
 
-    $selectionOptions = array('Submitted', 'In Progress', 'Approved', 'On Hold', 'Withdrawn');
+    $selectionOptions = array('Submitted', 'In Progress', 'Approved', 'On Hold', 'Withdrawn', 'Rejected', 'Deferred');
 ?>
             <li><label>New Status</label>
             <select class="mtnselect" name="status">

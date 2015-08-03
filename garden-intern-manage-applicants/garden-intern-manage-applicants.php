@@ -12,6 +12,7 @@ require('includes/ap_generate_form.php');
 
 function theme_name_scripts() { 
     wp_enqueue_style('garden', plugins_url('css/garden.css', __FILE__ )); 
+    wp_enqueue_style('scrollContent', plugins_url('css/scrollContent.css', __FILE__ )); 
 } 
      
 function ap_shortcode() {
