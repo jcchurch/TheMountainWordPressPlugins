@@ -2,11 +2,11 @@
 
 /*  Mountain Staff Update Form
  *   The labels of the form are displayed twice
- *   Initially when no row is selected, only the labels are displayed
- *   Once a row is selected the labels and data are then display
+ *   Initially when no id is selected, only the labels are displayed
+ *   Once a id is selected the labels and data are then display
  *
  */
-function displayGardenUpdateForm($anApplicant, $row, $columns, $staffComments) {
+function displayGardenUpdateForm($anApplicant, $id, $columns, $staffComments) {
 
     /* If there is no active post, do nothing. */
     if (!isset($anApplicant)) {
@@ -49,7 +49,7 @@ function displayGardenUpdateForm($anApplicant, $row, $columns, $staffComments) {
 /*
  *  Create the form table to display comments
  */
- ?>
+?>
             </div>
             <div class="panelright">
             <table style="width: 500px" cellpadding="0" cellspacing="0">
@@ -75,10 +75,10 @@ function displayGardenUpdateForm($anApplicant, $row, $columns, $staffComments) {
             </div>
         </div>
 
-        <input type="hidden" name="active" value="row<?php echo $row ?>"></p>
+        <input type="hidden" name="active" value="id<?php echo $id ?>"></p>
         <p><input type="submit" name="application_form" value="Update"></p>
 
     </form>
-<?
+<?php
 }
 ?>

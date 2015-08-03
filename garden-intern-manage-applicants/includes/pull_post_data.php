@@ -1,12 +1,12 @@
 <?php
 
-function pullActiveRecord() {
+function pullActiveRecordIdentifier() {
     /* If there is no active post, do nothing. */
     if (!isset($_POST['active'])) {
         return -1;
     }
 
-    $recordId = str_replace("row", "", $_POST['active']);
+    $recordId = str_replace("id", "", $_POST['active']);
 
     if (!is_numeric($recordId) || $recordId < 0) {
         return -1; 

@@ -12,10 +12,10 @@
  *        column id found in $applicantions)
  *
  */
-function displayTableOfApplicants($applications, $row, $columns) {
+function displayTableOfApplicants($applications, $id, $columns) {
 
-    if (applicationListButtonClicked() && $row < 0) { 
-        echo '<p><font color="red">No row selected. Try again.</font></p>'; 
+    if (applicationListButtonClicked() && $id < 0) { 
+        echo '<p><font color="red">No id selected. Try again.</font></p>'; 
     }
 ?>
     <form method="post" action="" name="applicationlist">
@@ -34,11 +34,13 @@ function displayTableOfApplicants($applications, $row, $columns) {
     foreach ($applications as $index => $record) {
         echo  '<tr>';
 
-        if($index == $row) {
-            echo "<td><input type='radio' name='active' value='row$index' checked></td>";
+        $anID = $record['ap_id'];
+
+        if($anID == $id) {
+            echo "<td><input type='radio' name='active' value='id$anID' checked></td>";
         }
         else {
-            echo "<td><input type='radio' name='active' value='row$index'></td>";
+            echo "<td><input type='radio' name='active' value='id$anID'></td>";
         }
 
         foreach ($columns as $column) {
@@ -55,8 +57,8 @@ function displayTableOfApplicants($applications, $row, $columns) {
         <br>
 <?php
 
-    if (applicationListButtonClicked() && $row < 0) { 
-        echo '<p><font color="red">No row selected. Try again.</font></p>'; 
+    if (applicationListButtonClicked() && $id < 0) { 
+        echo '<p><font color="red">No id selected. Try again.</font></p>'; 
     }
 }
 ?>

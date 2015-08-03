@@ -4,9 +4,9 @@
   * If true, add a entry into the mtn_meta_data if
   * 1. Status has been changed
   * 2. Comments have been added
-  * If the status has been changed, update the status in the mtn_application table for the
-  * appropriate row.
-  * Note: the $application[$seleced_row]['ap_id'] is the primary key to the mtn-application table.
+  * If the status has been changed, update the status in the mtn_application
+  * table for this $recordId
+  * Note: the $recordId is the primary key to the mtn-application table.
   */
 function updateApplicant($recordId, $oldStatus, $newStatus, $staffComments) {
     global $current_user;

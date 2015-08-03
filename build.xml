@@ -7,9 +7,11 @@
   </target>
 
   <target name="uploadgardeninternmanage" description="Uploads new garden-intern-manage-applicants">
-     <exec executable="ncftp">
-         <arg value="<">
-         <arg value="upload_garden_intern_manage_applicants">
+     <exec executable="ncftpput">
+         <arg value="-R"/>
+         <arg value="mountain"/>
+         <arg value="mountaincenters/wp-content/plugins/"/>
+         <arg value="garden-intern-manage-applicants"/>
      </exec>
   </target>
 

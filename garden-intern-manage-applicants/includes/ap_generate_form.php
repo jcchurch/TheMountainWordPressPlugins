@@ -6,6 +6,9 @@ require('update_applicant.php');
 require('pull_database.php');
 require('pull_post_data.php');
 
+/**
+ * This function organizes the page.
+ */
 function ap_generate_form() {
 /*
  *   Read mtn_application table were application data is stored
@@ -14,8 +17,9 @@ function ap_generate_form() {
  *   lower left/right panels.
  */
 
-    $applications = pullApplicants();
-    $row = pullActiveRecord();
+    $applications = pullRecords("mtn_application", array());
+    $id = pullActiveRecordIdentifier();
+
     $columns = array( 
                     array( "tag" => "ap_id", "name" => "ID" )
                   , array( "tag" => "ap_firstname", "name" => "First Name")
@@ -28,22 +32,46 @@ function ap_generate_form() {
                   , array( "tag" => "ap_status", "name" => "Status")
                   );
 
-    if ($row >= 0 && $row < count($applications)) {
-        displayGardenUpdateForm($applications[$row], $row, $columns, $staffComments);
+    if ($id >= 0) {
+        $record = findRecordInApplications($applications, $id);
+        displayGardenUpdateForm($record, $id, $columns, $staffComments);
 
         if (updateButtonClicked()) {
             $staffComments = pullStaffComments();
             $newStatus = pullNewStatus();
 
-            updateApplicant($applications[$row]['ap_id'],
-                            $applications[$row]['ap_status'],
+            updateApplicant($record['ap_id'],
+                            $record['ap_status'],
                             $newStatus,
                             $staffComments);
-            $applications = pullApplicants();
+            $applications = pullRecords("mtn_application", array());
         }
     }
 
-    displayTableOfApplicants($applications, $row, $columns);
+    displayTableOfApplicants($applications, $id, $columns);
+}
+
+/**
+ * Indexes through the list of $applications and finds the
+ * record which matches $id.
+ * Critical: if the $id cannot be found in $applications,
+ * the an assert exception is triggered.
+ *
+ * @param $applications a list of applications
+ * @param $id an id of a record to be found within $applications
+ * @return the record identified by $id.
+ */
+function findRecordInApplications($applications, $id) {
+    $record = array();
+
+    foreach ($applications as $aRecord) {
+        if ($aRecord["ap_id"] == $id) {
+            $record = $aRecord;
+        }
+    }
+
+    assert(empty($record)==false, "ID was not found in list of applicants.");
+    return $record;
 }
 
 ?>
