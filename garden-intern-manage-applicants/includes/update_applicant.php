@@ -1,13 +1,17 @@
 <?php
- /*
-  * Check if Update (submit) button clicked
-  * If true, add a entry into the mtn_meta_data if
-  * 1. Status has been changed
-  * 2. Comments have been added
-  * If the status has been changed, update the status in the mtn_application
-  * table for this $recordId
-  * Note: the $recordId is the primary key to the mtn-application table.
-  */
+
+/**
+ * Updates an applicant's status and staff comments.
+ *
+ * This function performs 0, 1, or 2 database updates.
+ * - If $newStatus is not an empty string, the database updates
+ * - If $staffComments is not an empty string, the database updates
+ *
+ * @param $recordId id of applicant who needs to be updated
+ * @param $oldStatus old status of the applicant
+ * @param $newStatus new status of the applicant
+ * @param $staffComments comments provided by the staff
+ */
 function updateApplicant($recordId, $oldStatus, $newStatus, $staffComments) {
     global $current_user;
     global $wpdb;

@@ -45,6 +45,8 @@ function displayGardenUpdateForm($anApplicant, $id, $columns, $staffComments) {
                  <textarea class="mtntextAreaClass" name="staff_comments" ><?php echo sanitize_text_field($staffComments); ?></textarea>
             </li>
             </ul>
+            <input type="hidden" name="active" value="id<?php echo $id ?>"></p>
+            <p><input type="submit" name="application_form" value="Update"></p>
 <?php
 /*
  *  Create the form table to display comments
@@ -52,31 +54,33 @@ function displayGardenUpdateForm($anApplicant, $id, $columns, $staffComments) {
 ?>
             </div>
             <div class="panelright">
-            <table style="width: 500px" cellpadding="0" cellspacing="0">
+            <table class="scrollTable">
+            <thead class="fixedHeader">
             <tr>
-              <td style="width: 250px">Comments</td>
-              <td style="width: 100px">Author</td>
-              <td style="width: 100px">Date</td>
+              <th>Comments</th>
+              <th>Author</th>
+              <th>Date</th>
             </tr>
+            </thead>
+            <tbody class="scrollContent">
 
 <?php
     $activeRecordData = pullMetaData($anApplicant['ap_id']);
     foreach ($activeRecordData as $record) {
         echo  '<tr>';
-        echo  "<td style='width: 230px'>{$record['mm_meta_data']}</td>";
-        echo  "<td style='width: 95px'>{$record['mm_meta_user']}</td>";
-        echo  "<td style='width: 95px'>{$record['mm_insert_date']}</td>";
+        echo  "<td>{$record['mm_meta_data']}</td>";
+        echo  "<td>{$record['mm_meta_user']}</td>";
+        echo  "<td>{$record['mm_insert_date']}</td>";
         echo  '</tr>';
     }
 ?>
 
+            </tbody>
             </table>
 
             </div>
         </div>
 
-        <input type="hidden" name="active" value="id<?php echo $id ?>"></p>
-        <p><input type="submit" name="application_form" value="Update"></p>
 
     </form>
 <?php
