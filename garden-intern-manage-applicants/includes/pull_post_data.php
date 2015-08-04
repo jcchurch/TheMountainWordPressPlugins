@@ -37,4 +37,27 @@ function updateButtonClicked() {
     return isset($_POST['application_form']);
 }
 
+function filterButtonClicked() {
+    return isset($_POST['filter_button']);
+}
+
+function pullFilterCriteria() {
+    $filterCriteria = array();
+
+    $filterSelections = array(
+          'filterStatus' => 'ap_status'
+        , 'filterLastName' => 'ap_lastname'
+    );
+
+    if (filterButtonClicked()) {
+        foreach ($filterSelections as $name => $column) {
+            if ($_POST[$name] != "[BLANK]") {
+                $filterCriteria[$column] = trim(sanitize_text_field($_POST[$name]));
+            }
+        }
+    }
+
+    return $filterCriteria;
+}
+
 ?>

@@ -18,7 +18,8 @@ function ap_generate_form() {
  *   lower left/right panels.
  */
 
-    $applications = pullRecords("mtn_application", array());
+    $filterCriteria = pullFilterCriteria();
+    $applications = pullRecords("mtn_application", $filterCriteria);
     $id = pullActiveRecordIdentifier();
 
     $columns = array( 
