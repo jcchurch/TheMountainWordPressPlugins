@@ -44,10 +44,11 @@ html>body thead.fixedHeader tr {
 
 /* make the TH elements pretty */
 thead.fixedHeader th {
-    background: #C96;
-    border-left: 1px solid #EB8;
-    border-right: 1px solid #B74;
-    border-top: 1px solid #EB8;
+    color: #FFF;
+    background: #008000;
+    border-left: 1px solid #00BF00;
+    border-right: 1px solid #00BF00;
+    border-top: 1px solid #00BF00;
     font-weight: normal;
     padding: 4px 3px;
     text-align: left
