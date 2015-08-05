@@ -36,7 +36,9 @@ function displayGardenUpdateForm($anApplicant, $id, $columns, $staffComments) {
             <option value="">Select▾</option>
 <?php
     foreach ($selectionOptions as $anOption) {
-        echo "<option value='$anOption'>$anOption</option>\n";
+        if ($anOption != $anApplicant['ap_status']) {
+            echo "<option value='$anOption'>$anOption</option>\n";
+        }
     }
 ?>
             </select>
