@@ -15,7 +15,21 @@ function displayGardenUpdateForm($anApplicant, $id, $columns, $staffComments) {
 
 ?>
             <br>
+            <div class="updatepanels">
             <h2>Update Applicant for Mountain Positions</h2>
+
+<?php
+       if (updateButtonClicked()) {
+            $staffComments = pullStaffComments();
+            $newStatus = pullNewStatus();
+
+            updateApplicant($anApplicant['ap_id'],
+                            $anApplicant['ap_status'],
+                            $newStatus,
+                            $staffComments);
+        }
+?>
+
             <div class="panelleft">
             <h4>Applicant Information</h4>
             <form method="post" action="">
@@ -81,6 +95,7 @@ function displayGardenUpdateForm($anApplicant, $id, $columns, $staffComments) {
             </tbody>
             </table>
 
+            </div>
             </div>
 <?php
 }

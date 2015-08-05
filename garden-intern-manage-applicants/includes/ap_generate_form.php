@@ -37,14 +37,7 @@ function ap_generate_form() {
         displayGardenUpdateForm($record, $id, $columns, $staffComments);
 
         if (updateButtonClicked()) {
-            $staffComments = pullStaffComments();
-            $newStatus = pullNewStatus();
-
-            updateApplicant($record['ap_id'],
-                            $record['ap_status'],
-                            $newStatus,
-                            $staffComments);
-            $applications = pullRecords("mtn_application", array());
+            $applications = pullRecords("mtn_application", $filterCriteria);
         }
     }
 

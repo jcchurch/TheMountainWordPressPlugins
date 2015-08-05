@@ -1,3 +1,10 @@
+.updatepanels {
+    display: inline-block; 
+    width: 100%;
+    margin: 0;
+    padding: 10px;
+}
+
 .panelleft {
     display: inline-block; 
     background: #ffffff;
@@ -30,17 +37,12 @@
 }
 
 .panelsuccess {
+    background: none repeat scroll 0% 0% #FFFFF0;
+    border: medium solid;
+    margin: 10px;
+    width: 905px;
     display: inline-block; 
-    background: #fffff0; 
-    position: relative;
-    top: -350px;
-    left: 25px;
-    height: 200px;
-    border: solid;
-    width: 350px;
-    margin: 0px; 
     padding: 10px; 
-    float: left;
 }
 
 .mtnlabelClass{
