@@ -48,7 +48,7 @@ function ap_generate_form() {
         }
     }
 
-    displayFilterMenu();
+    displayFilterMenu($filterCriteria);
     displayTableOfApplicants($applications, $id, $columns);
 }
 

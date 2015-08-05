@@ -8,13 +8,18 @@
  * @param $name the internal name of this selection menus
  * @param $options the list of options from which to select
  */
-function displaySelectionMenu($label, $name, $options) {
+function displaySelectionMenu($label, $name, $options, $original) {
     echo "$label\n";
     echo "<select name='$name'>\n";
     echo "    <option value='[BLANK]'>Select▾</option>\n";
 
     foreach ($options as $option) {
-        echo "    <option value='$option'>$option</option>\n";
+        if (isset($original) && $original == $option) {
+            echo "    <option value='$option' SELECTED>$option</option>\n";
+        }
+        else {
+            echo "    <option value='$option'>$option</option>\n";
+        }
     }
     echo "</select>\n";
 }
