@@ -20,10 +20,21 @@ function displayTableOfApplicants($applications, $id, $columns) {
         echo '<p><font color="red">No id selected. Try again.</font></p>'; 
     }
 ?>
+
+    <script>
+    $.fn.tableScroll.defaults =
+    {
+        flush: true, // makes the last thead and tbody column flush with the scrollbar
+        width: null, // width of the table (head, body and foot), null defaults to the tables natural width
+        height: 300, // height of the scrollable area
+        containerClass: 'thetable' // the plugin wraps the table in a div with this css class
+    };
+    </script>
+
     <form method="post" action="" name="applicationlist">
         <h2>List of Applications for Mountain Positions</h2>
 
-        <table class="scrollTable">
+        <table id="thetable" cellspacing="0">
         <thead class="fixedHeader">
         <tr>
         <th>Select</th>

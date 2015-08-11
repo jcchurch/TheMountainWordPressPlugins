@@ -1,5 +1,7 @@
 <?php
 
+require('update_database.php');
+
 /**
  * Updates an applicant's status and staff comments.
  *
@@ -13,61 +15,9 @@
  * @param $staffComments comments provided by the staff
  */
 function updateApplicant($recordId, $oldStatus, $newStatus, $staffComments) {
-    global $current_user;
-    global $wpdb;
 
-    $update_status = FALSE;
-    $update_staff_comments = FALSE;
-
-    get_currentuserinfo();
-    $current_user_name = $current_user->user_login;
-    $current_user_firstname = $current_user->user_firstname;
-    $current_user_lastname = $current_user->user_lastname;
-    $current_user_display_name = $current_user->display_name;
-
-    /*
-     *  Determine if new status selected from dropdown list
-     *  Update to new status and add comment to mtn_meta_data that
-     *  status has changed
-     */
-    if (strlen($newStatus) > 0) {
-        $table_name =  'mtn_application';
-        $wpdb->update($table_name, array('ap_status' => $newStatus),array('ap_id'=>$recordId));
-
-        $table_name =  'mtn_meta_data';
-        $mm_data_id = 'Garden Internship';
-        $mm_object_id = $recordId;
-        $mm_meta_data = "Auto Msg: Status changed from $oldStatus to $newStatus.";
-
-        $wpdb->insert($table_name, array(
-            'mm_meta_id'    => $mm_data_id,
-            'mm_object_id'  => $mm_object_id,
-            'mm_meta_user'  => $current_user_name,
-            'mm_meta_data'  => $mm_meta_data
-        ));
-
-        $update_status = TRUE;
-    }
-
-    /*
-     *  Determine if user comments have been added.
-     *  Add user comments to mtn_meta_data
-     */
-    if(strlen($staffComments) > 0) {
-        $table_name = 'mtn_meta_data';
-        $mm_data_id = 'Garden Internship';
-        $mm_object_id = $recordId;
-        $mm_meta_data = $staffComments;
-
-        $wpdb->insert($table_name, array(
-              'mm_meta_id'    => $mm_data_id
-            , 'mm_object_id'  => $mm_object_id
-            , 'mm_meta_user'  => $current_user_name
-            , 'mm_meta_data'  => $mm_meta_data
-        ));
-
-        $update_staff_comments = TRUE;
-    }
+    $update_status = updateStatus($recordId, $oldStatus, $newStatus);
+    $update_staff_comments = updateStaffComments($recordId, $staffComments);
 
     if ($update_status or $update_staff_comments) {
 

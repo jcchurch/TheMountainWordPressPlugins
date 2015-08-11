@@ -3,7 +3,7 @@
       Test and Zip WordPress Plugins
   </description>
 
-  <target name="build" depends="uploadgardeninternmanage" description="Upload everything">
+  <target name="build" depends="uploadgardeninternmanage,uploadretreatinqueryform" description="Upload everything">
   </target>
 
   <target name="uploadgardeninternmanage" description="Uploads new garden-intern-manage-applicants">
@@ -12,6 +12,15 @@
          <arg value="mountain"/>
          <arg value="mountaincenters/wp-content/plugins/"/>
          <arg value="garden-intern-manage-applicants"/>
+     </exec>
+  </target>
+
+  <target name="uploadretreatinqueryform" description="Uploads new retreat-inquery-form">
+     <exec executable="ncftpput">
+         <arg value="-R"/>
+         <arg value="mountain"/>
+         <arg value="mountaincenters/wp-content/plugins/"/>
+         <arg value="retreat-inquery-form"/>
      </exec>
   </target>
 
