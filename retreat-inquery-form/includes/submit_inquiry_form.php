@@ -1,7 +1,6 @@
 <?php
 
 require('input_text_field.php');
-require('input_attractive_text_field.php');
 require('input_mobile_field.php');
 require('input_email_field.php');
 
@@ -47,7 +46,7 @@ function TabNext(obj,event,len,next_field) {
 
     $nbr_errors_found += inputTextField("First Name", "firstname", $_POST['firstname'], true);
     $nbr_errors_found += inputTextField("Last Name", "lastname", $_POST['lastname'], true);
-    $nbr_errors_found += inputMobileFields();
+    $nbr_errors_found += inputMobileField();
     $nbr_errors_found += inputEmailField();
 ?>
     <br>
@@ -55,14 +54,13 @@ function TabNext(obj,event,len,next_field) {
 
     <h3><label style="color:green"> Retreat Information </label></h3>       
  
-<?php
+<?php    
     $nbr_errors_found += inputAttractiveTextField("Desired Dates", "desireddates", $_POST['desireddates'], true);
     $nbr_errors_found += inputAttractiveTextField("Retreat Name", "retreatname", $_POST['retreatname'], false);
     $nbr_errors_found += inputAttractiveTextField("Organization", "organization", $_POST['organization'], false);
     $nbr_errors_found += inputAttractiveTextField("Your Website", "website_url", $_POST['website_url'], false);
     $nbr_errors_found += inputAttractiveTextField("How did you hear about The Mountain", "howheardabout", $_POST['howheardabout'], false);
 ?>
-
     <label class="mtnlabelClass"> Comments </label> 
     <br>    
     <textarea class="mtntextAreaClass" style="margin-left:0" type="textarea" name="comments" > <?php 
