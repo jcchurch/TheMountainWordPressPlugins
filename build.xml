@@ -24,6 +24,15 @@
      </exec>
   </target>
 
+  <target name="uploadwhatsinthedatabase" description="Uploads new whats-in-the-database"> 
+     <exec executable="ncftpput">
+         <arg value="-R"/>
+         <arg value="mountain"/>
+         <arg value="mountaincenters/wp-content/plugins/"/>
+         <arg value="whats-in-the-database"/>
+     </exec>
+  </target>
+
   <target name="zipgardeninternmanage" description="Zip garden-intern-manage-applicants">
      <exec executable="zip">
          <arg value="-r"/>
