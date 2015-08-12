@@ -11,6 +11,7 @@ Author URI: http://studio205.tv
 require('includes/ri_admin_screen.php');
 require('includes/mtn_retreat_inquiry_create.php');
 require('includes/ri_form.php');
+require('includes/process_form_data.php');
 
 /* Functions in this file:
   ri_admin_screen() : Creates an admin screen to set the Mountain staff emails to send / receive 
@@ -34,7 +35,8 @@ register_activation_hook(__FILE__,'mtn_retreat_inquiry_create');
 
 function ri_shortcode() {
     ob_start();
-    ri_form(); 
+    $messagePackage = ri_form(); 
+    processFormData($messagePackage);
     return ob_get_clean();
 }
  

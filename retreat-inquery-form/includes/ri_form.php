@@ -67,7 +67,6 @@ function TabNext(obj,event,len,next_field) {
     <input type="submit" name="inquiryform" value="Submit Inquiry">
     <?php wp_nonce_field('ri_inquiry_form_update_');?> </form>
 <?php
-    processFormData($messagePackage);
-
+    return $messagePackage;
 } /* end Retreat_Inquiry_submission_form() */
 ?>
