@@ -2,6 +2,7 @@
 
 require('input_text_field.php');
 require('input_attractive_text_field.php');
+require('input_attractive_comments.php');
 require('input_mobile_field.php');
 require('input_email_field.php');
 
@@ -61,32 +62,14 @@ function TabNext(obj,event,len,next_field) {
     $nbr_errors_found += inputAttractiveTextField("Organization", "organization", $_POST['organization'], false);
     $nbr_errors_found += inputAttractiveTextField("Your Website", "website_url", $_POST['website_url'], false);
     $nbr_errors_found += inputAttractiveTextField("How did you hear about The Mountain", "howheardabout", $_POST['howheardabout'], false);
+    $nbr_errors_found += inputAttractiveComments();
 ?>
 
-    <label class="mtnlabelClass"> Comments </label> 
-    <br>    
-    <textarea class="mtntextAreaClass" style="margin-left:0" type="textarea" name="comments" > <?php 
-    if(isset ($_POST['comments'])) 
-    {
-        $comments = sanitize_text_field($_POST['comments']); 
-            if((strlen($comments) > 200))
-            { $errormsg = 'Comments truncated to 200 characters';
-            ++$nbr_errors_found;
-            }
-            else
-            {$errormsg = '';}
-        $truncated_comments = substr($comments, 0, 200);
-        $comments = preg_replace('/\n+/', "\n", trim($truncated_comments));     
-        echo $comments;
-    }?>
-    </textarea>
-    <label class="mtnerrorClass1"> <?php echo $errormsg ?></label>
-    
     <br>    
     <input type="submit" name="inquiryform" value="Submit Inquiry"> 
     <?php wp_nonce_field('ri_inquiry_form_update_');?>  
     </form>
- <?php 
+<?php 
  
 /* Process form data.  All edits and santizing has been done in the form */ 
  
