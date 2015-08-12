@@ -1,7 +1,7 @@
 <?php
 
 function inputAttractiveComments() {
-    $nbr_errors_found = 0;
+    $messagePackage = array();
 ?>
 
     <label class="mtnlabelClass"> Comments </label> 
@@ -11,18 +11,18 @@ function inputAttractiveComments() {
         $comments = sanitize_text_field($_POST['comments']); 
             if((strlen($comments) > 200))
             { $errormsg = 'Comments truncated to 200 characters';
-            ++$nbr_errors_found;
             }
             else
             {$errormsg = '';}
         $truncated_comments = substr($comments, 0, 200);
         $comments = preg_replace('/\n+/', "\n", trim($truncated_comments));     
+        $messagePackage['comments'] = $comments;
         echo $comments;
     }?>
     </textarea>
     <label class="mtnerrorClass1"> <?php echo $errormsg ?></label>
 
 <?php
-    return $nbr_errors_found;
+    return $messagePackage;
 }
 ?>

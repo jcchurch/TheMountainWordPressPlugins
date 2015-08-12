@@ -2,7 +2,7 @@
 
 function inputTextField($label, $name, $originalValue, $required=false) {
 
-    $nbr_error_found = 0;
+    $messagePackage = array();
 
     if ($required) {
         echo "<label class='mtnlabelClass'>$label <span style='color:red'>*</span></label>\n\n";
@@ -15,9 +15,12 @@ function inputTextField($label, $name, $originalValue, $required=false) {
     if(isset($originalValue)) {
         $value = sanitize_text_field($originalValue);
 
-        if (empty($value)) {
+        if (empty($value) && $required) {
             $errormsg = $label.' required';
-            $nbr_error_found = 1;
+            $messagePackage['error'] = $errormsg;
+        }
+        else {
+            $messagePackage[$name] = $value;
         }
     }
 
@@ -31,6 +34,6 @@ function inputTextField($label, $name, $originalValue, $required=false) {
     echo "<label class='mtnerrorClass'>$errormsg</label>\n\n";
     echo "<br>\n\n";
 
-    return  $nbr_error_found;
+    return  $messagePackage;
 }
 ?>

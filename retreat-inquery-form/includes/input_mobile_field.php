@@ -1,7 +1,7 @@
 <?php
 
 function inputMobileFields() {
-    $nbr_errors_found = 0;
+    $messagePackage = array();
 ?>
     <label class="mtnlabelClass"> Mobile <span style="color:red">*</span></label>               
     <input class="mtninputClass" type="tel" name="mobile_npa" maxlength="3" size="3" nKeyDown="TabNext(this,'down',3)" onKeyUp="TabNext(this,'up',3,this.form.mobile_nxx)"
@@ -26,20 +26,22 @@ function inputMobileFields() {
                     echo $mobile_nbr;
                     /* perform edit on the assemble mobile number */
                     $mobile = $mobile_npa . $mobile_nxx . $mobile_nbr;
+                    $messagePackage['mobile'] = $mobile;
                     if((strlen($mobile) != 10)) 
                         { 
                             $errormsg = 'Mobile Required'; 
-                           ++$nbr_errors_found;
+                            $messagePackage['error'] = $errormsg;
                         }
                     else
                     {
                         If(!is_numeric($mobile)) 
                             {
                               $errormsg = 'Mobile Not Numeric';
-                              ++$nbr_errors_found;
+                              $messagePackage['error'] = $errormsg;
                             }
-                        else 
-                           {$errormsg = '';}    
+                        else {
+                            $errormsg = '';
+                        }    
                     }
 
                 }?>>                        
@@ -47,7 +49,7 @@ function inputMobileFields() {
     <br>
 
 <?php
-   return $nbr_errors_found;
+   return $messagePackage;
 } /* end Retreat_Inquiry_submission_form() */
 
 ?>

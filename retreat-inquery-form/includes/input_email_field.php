@@ -1,7 +1,7 @@
 <?php
 
 function inputEmailField() {
-    $nbr_errors_found = 0;
+    $messagePackage = array();
 
 ?>
     <label class="mtnlabelClass"> Email <span style="color:red">*</span></label> 
@@ -12,15 +12,16 @@ function inputEmailField() {
                     echo ' "'.   $email . '"';
                     if(empty($email)) { 
                         $errormsg = 'Email Required'; 
-                        ++$nbr_errors_found;
+                        $messagePackage['error'] = $errormsg;
                     }
                     else {
                         if (filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
-                             $errormsg = 'Email not valid';
-                             ++$nbr_errors_found;
+                            $errormsg = 'Email not valid';
+                            $messagePackage['error'] = $errormsg;
                         }   
                         else {
                             $errormsg = '';
+                            $messagePackage['email'] = $email;
                         }
                     }
                 }?>>
@@ -28,6 +29,6 @@ function inputEmailField() {
     <br>
     <br>
 <?php
-    return $nbr_errors_found;
+    return $messagePackage;
 }
 ?>
