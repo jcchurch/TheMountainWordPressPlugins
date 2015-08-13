@@ -1,5 +1,15 @@
 <?php
 
+/**
+ * Checks post data for proper input and displays the input fields
+ * which receive input for an email field.
+ *
+ * The function will return the associative array containing 
+ * - the text of the field (if detected) (key: "email")
+ * - possibly an error message obtained along the way (key: "error")
+ *
+ * @return an associative array with the following fields described above.
+ */
 function inputEmailField() {
     $messagePackage = array();
 
