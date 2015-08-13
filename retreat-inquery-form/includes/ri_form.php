@@ -2,7 +2,7 @@
 
 require('input_text_field.php');
 require('input_attractive_text_field.php');
-require('input_attractive_comments.php');
+require('input_attractive_textarea.php');
 require('input_mobile_field.php');
 require('input_email_field.php');
 require('process_form_data.php');
@@ -48,6 +48,12 @@ function TabNext(obj,event,len,next_field) {
     $messagePackage += inputTextField("Last Name", "lastname", $_POST['lastname'], true);
     $messagePackage += inputMobileFields();
     $messagePackage += inputEmailField();
+    $messagePackage += inputTextField("Address 1", "address1", $_POST['address1'], false);
+    $messagePackage += inputTextField("Address 2", "address2", $_POST['address2'], false);
+    $messagePackage += inputTextField("City", "city", $_POST['city'], false);
+    $messagePackage += inputTextField("State", "state", $_POST['state'], false);
+    $messagePackage += inputTextField("ZIP", "zip", $_POST['zip'], false);
+
 ?>
     <br>
     <br>
@@ -60,7 +66,7 @@ function TabNext(obj,event,len,next_field) {
     $messagePackage += inputAttractiveTextField("Organization", "organization", $_POST['organization'], false);
     $messagePackage += inputAttractiveTextField("Your Website", "website_url", $_POST['website_url'], false);
     $messagePackage += inputAttractiveTextField("How did you hear about The Mountain", "howheardabout", $_POST['howheardabout'], false);
-    $messagePackage += inputAttractiveComments();
+    $messagePackage += inputAttractiveTextarea("Comments", "comments", $_POST['comments']);
 ?>
 
     <br>

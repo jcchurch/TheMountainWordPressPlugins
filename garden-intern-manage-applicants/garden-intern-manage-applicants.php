@@ -12,13 +12,9 @@ require('includes/ap_generate_form.php');
 
 function theme_name_scripts() { 
     wp_enqueue_style('garden', plugins_url('css/garden.css', __FILE__ )); 
-    // wp_enqueue_style('scrollContent', plugins_url('css/scrollContent.css', __FILE__ )); 
     wp_enqueue_style('simpleTable', plugins_url('css/simpleTable.css', __FILE__ )); 
 } 
 
-wp_enqueue_script( 'simpleTable', plugins_url('js/jquery.simpletable.js', __FILE__ ));
-wp_enqueue_script( 'jquery', 'http://code.jquery.com/jquery-1.11.3.min.js');
- 
 function ap_shortcode() {
     ob_start();
     ap_generate_form();

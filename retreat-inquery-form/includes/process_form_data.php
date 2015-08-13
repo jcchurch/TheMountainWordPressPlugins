@@ -27,6 +27,11 @@ function processFormData($messagePackage) {
                 'ri_retreat_org_url' => $messagePackage['website_url'],
                 'ri_heard_about'     => $messagePackage['howheardabout'],
                 'ri_comments'        => $messagePackage['comments'],
+                'ri_address1'        => $messagePackage['address1'],
+                'ri_address2'        => $messagePackage['address2'],
+                'ri_city'            => $messagePackage['city'],
+                'ri_state'           => $messagePackage['state'],
+                'ri_zip'             => $messagePackage['zip'],
                 'ri_type'            => $ri_type,
                 'ri_status'          => 'Submitted')) == FALSE) {
 
@@ -71,7 +76,7 @@ function processFormData($messagePackage) {
         $msg .= 'Heard About.............: ' . $messagePackage['howheardabout'] . "\n";
 
         $msg .= 'Comments :' . "\n" . "\n";
-        $msg .= trim($comments);
+        $msg .= trim($messagePackage['comments']);
 
         /* Define Boundary to define where the attachment begins and ends. */
 

@@ -1,12 +1,25 @@
 <project name="MyProject" default="build" basedir=".">
   <description>
-      Test and Zip WordPress Plugins
+      Upload and Clean WordPress Plugins
   </description>
 
-  <target name="build" depends="uploadgardeninternmanage,uploadretreatinqueryform" description="Upload everything">
+  <target name="build" depends="uploadgardeninternmanage,uploadretreatinqueryform" description="Upload essentials">
   </target>
 
-  <target name="uploadgardeninternmanage" description="Uploads new garden-intern-manage-applicants">
+  <target name="cleansetup">
+     <exec executable="mkdir">
+         <arg value="trash"/>
+     </exec>
+  </target>
+
+  <target name="clean" depends="cleansetup,cleangardeninternmanage,cleanretreatinqueryform,cleanwhatsinthedatabase" description="Clean up everything">
+     <exec executable="rm">
+         <arg value="-rf"/>
+         <arg value="trash"/>
+     </exec>
+  </target>
+
+  <target name="uploadgardeninternmanage" description="Uploads garden-intern-manage-applicants">
      <exec executable="ncftpput">
          <arg value="-R"/>
          <arg value="mountain"/>
@@ -15,7 +28,7 @@
      </exec>
   </target>
 
-  <target name="uploadretreatinqueryform" description="Uploads new retreat-inquery-form">
+  <target name="uploadretreatinqueryform" description="Uploads retreat-inquery-form">
      <exec executable="ncftpput">
          <arg value="-R"/>
          <arg value="mountain"/>
@@ -33,15 +46,37 @@
      </exec>
   </target>
 
-  <target name="zipgardeninternmanage" description="Zip garden-intern-manage-applicants">
-     <exec executable="zip">
-         <arg value="-r"/>
-         <arg value="garden-intern-manage-applicants.zip"/>
-         <arg value="garden-intern-manage-applicants"/>
+  <target name="cleangardeninternmanage" description="Delete garden-intern-manage-applicants">
+     <exec executable="ncftpget">
+         <arg value="-R"/>
+         <arg value="-DD"/>
+         <arg value="-v"/>
+         <arg value="mountain"/>
+         <arg value="trash"/>
+         <arg value="mountaincenters/wp-content/plugins/garden-intern-manage-applicants/"/>
+     </exec>
+  </target>
+ 
+  <target name="cleanretreatinqueryform" description="Delete retreat-inquery-form">
+     <exec executable="ncftpget">
+         <arg value="-R"/>
+         <arg value="-DD"/>
+         <arg value="-v"/>
+         <arg value="mountain"/>
+         <arg value="trash"/>
+         <arg value="mountaincenters/wp-content/plugins/retreat-inquery-form/"/>
      </exec>
   </target>
 
-  <target name="clean" description="clean up">
-    <delete file="garden-intern-manage-applicants.zip"/>
+  <target name="cleanwhatsinthedatabase" description="Delete whats-in-the-database">
+     <exec executable="ncftpget">
+         <arg value="-R"/>
+         <arg value="-DD"/>
+         <arg value="-v"/>
+         <arg value="mountain"/>
+         <arg value="trash"/>
+         <arg value="mountaincenters/wp-content/plugins/whats-in-the-database/"/>
+     </exec>
   </target>
+ 
 </project>
