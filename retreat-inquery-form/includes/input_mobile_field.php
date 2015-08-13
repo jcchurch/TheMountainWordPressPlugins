@@ -39,10 +39,6 @@ function inputMobileFields() {
               $errormsg = 'Mobile Not Numeric';
               $messagePackage['error'] = $errormsg;
         }
-        else {
-            $errormsg = '';
-            $messagePackage['error'] = $errormsg;
-        }    
     }
 
 ?>

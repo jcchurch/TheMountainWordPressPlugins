@@ -5,6 +5,7 @@ require('input_attractive_text_field.php');
 require('input_attractive_textarea.php');
 require('input_mobile_field.php');
 require('input_email_field.php');
+require('input_state_zip.php');
 require('process_form_data.php');
 
 function ri_form() {
@@ -48,11 +49,10 @@ function TabNext(obj,event,len,next_field) {
     $messagePackage += inputTextField("Last Name", "lastname", $_POST['lastname'], true);
     $messagePackage += inputMobileFields();
     $messagePackage += inputEmailField();
-    $messagePackage += inputTextField("Address 1", "address1", $_POST['address1'], false);
+    $messagePackage += inputTextField("Address 1", "address1", $_POST['address1'], true);
     $messagePackage += inputTextField("Address 2", "address2", $_POST['address2'], false);
-    $messagePackage += inputTextField("City", "city", $_POST['city'], false);
-    $messagePackage += inputTextField("State", "state", $_POST['state'], false);
-    $messagePackage += inputTextField("ZIP", "zip", $_POST['zip'], false);
+    $messagePackage += inputTextField("City", "city", $_POST['city'], true);
+    $messagePackage += inputStateZip();
 
 ?>
     <br>
@@ -73,6 +73,7 @@ function TabNext(obj,event,len,next_field) {
     <input type="submit" name="inquiryform" value="Submit Inquiry">
     <?php wp_nonce_field('ri_inquiry_form_update_');?> </form>
 <?php
+
     return $messagePackage;
 } /* end Retreat_Inquiry_submission_form() */
 ?>
