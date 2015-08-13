@@ -5,7 +5,7 @@ function inputEmailField() {
 
 ?>
     <label class="mtnlabelClass"> Email <span style="color:red">*</span></label> 
-    <input class="mtninputClass"  type="email" name="email" maxlength="35" size="35" 
+    <input class="mtninputClass"  type="email" name="email" maxlength="35" size="30" 
             value=<?php if(isset( $_POST["email"] )) 
                 {
                     $email = sanitize_text_field($_POST['email']);
