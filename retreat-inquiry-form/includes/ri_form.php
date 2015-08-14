@@ -65,7 +65,7 @@ function TabNext(obj,event,len,next_field) {
     $messagePackage += inputAttractiveTextField("Retreat Name", "retreatname", $_POST['retreatname'], false);
     $messagePackage += inputAttractiveTextField("Organization", "organization", $_POST['organization'], false);
     $messagePackage += inputAttractiveTextField("Your Website", "website_url", $_POST['website_url'], false);
-    $messagePackage += inputAttractiveTextField("How did you hear about The Mountain", "howheardabout", $_POST['howheardabout'], false);
+    $messagePackage += inputAttractiveTextField("How did you hear about The Mountain?", "howheardabout", $_POST['howheardabout'], false);
     $messagePackage += inputAttractiveTextarea("Comments", "comments", $_POST['comments']);
 ?>
 

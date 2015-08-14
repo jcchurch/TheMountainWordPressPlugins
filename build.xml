@@ -3,7 +3,7 @@
       Upload and Clean WordPress Plugins
   </description>
 
-  <target name="build" depends="uploadgardeninternmanage,uploadretreatinqueryform" description="Upload essentials">
+  <target name="build" depends="uploadgardeninternmanage,uploadretreatinquiryform" description="Upload essentials">
   </target>
 
   <target name="cleansetup">
@@ -12,7 +12,7 @@
      </exec>
   </target>
 
-  <target name="clean" depends="cleansetup,cleangardeninternmanage,cleanretreatinqueryform,cleanwhatsinthedatabase" description="Clean up everything">
+  <target name="clean" depends="cleansetup,cleangardeninternmanage,cleanretreatinquiryform,cleanwhatsinthedatabase" description="Clean up everything">
      <exec executable="rm">
          <arg value="-rf"/>
          <arg value="trash"/>
@@ -28,12 +28,12 @@
      </exec>
   </target>
 
-  <target name="uploadretreatinqueryform" description="Uploads retreat-inquery-form">
+  <target name="uploadretreatinquiryform" description="Uploads retreat-inquiry-form">
      <exec executable="ncftpput">
          <arg value="-R"/>
          <arg value="mountain"/>
          <arg value="mountaincenters/wp-content/plugins/"/>
-         <arg value="retreat-inquery-form"/>
+         <arg value="retreat-inquiry-form"/>
      </exec>
   </target>
 
@@ -57,14 +57,14 @@
      </exec>
   </target>
  
-  <target name="cleanretreatinqueryform" description="Delete retreat-inquery-form">
+  <target name="cleanretreatinquiryform" description="Delete retreat-inquiry-form">
      <exec executable="ncftpget">
          <arg value="-R"/>
          <arg value="-DD"/>
          <arg value="-v"/>
          <arg value="mountain"/>
          <arg value="trash"/>
-         <arg value="mountaincenters/wp-content/plugins/retreat-inquery-form/"/>
+         <arg value="mountaincenters/wp-content/plugins/retreat-inquiry-form/"/>
      </exec>
   </target>
 

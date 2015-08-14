@@ -30,12 +30,12 @@ function inputMobileFields() {
     $mobile = $mobile_npa . $mobile_nxx . $mobile_nbr;
     $messagePackage['mobile'] = $mobile;
 
-    if((strlen($mobile) != 10)) { 
+    if(strlen($mobile) != 10 && strlen($mobile) != 0) { 
         $errormsg = 'Mobile Required'; 
         $messagePackage['error'] = $errormsg;
     }
     else {
-        if(!is_numeric($mobile)) {
+        if(!is_numeric($mobile) && strlen($mobile) != 0) {
               $errormsg = 'Mobile Not Numeric';
               $messagePackage['error'] = $errormsg;
         }
