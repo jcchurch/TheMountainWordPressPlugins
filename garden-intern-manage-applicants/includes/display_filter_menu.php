@@ -1,5 +1,7 @@
 <?php
 
+namespace Mountain\Garden\Manage;
+
 require_once('display_selection_menu.php');
 
 /**

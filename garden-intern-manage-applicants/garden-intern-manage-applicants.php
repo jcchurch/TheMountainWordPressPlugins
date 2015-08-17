@@ -8,6 +8,8 @@
  *  Author URI: http://www.studio205.tv
  */
 
+namespace Mountain\Garden\Manage;
+
 require('includes/ap_generate_form.php');
 
 function theme_name_scripts() { 
@@ -21,7 +23,7 @@ function ap_shortcode() {
     return ob_get_clean();
 }
 
-add_action('wp_enqueue_scripts', 'theme_name_scripts');
-add_shortcode( 'application_form', 'ap_shortcode' );
+add_action('wp_enqueue_scripts', __NAMESPACE__.'\\theme_name_scripts');
+add_shortcode( 'application_form', __NAMESPACE__.'\\ap_shortcode' );
 
 ?>

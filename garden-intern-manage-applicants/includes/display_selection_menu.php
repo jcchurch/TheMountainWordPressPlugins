@@ -1,5 +1,7 @@
 <?php
 
+namespace Mountain\Garden\Manage;
+
 /**
  * Displays a selection menu on the screen. The first option
  * is always "[BLANK]" and seen as "Select▾".

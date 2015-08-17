@@ -1,5 +1,7 @@
 <?php
 
+namespace Mountain\Garden\Manage;
+
 require('update_database.php');
 
 /**

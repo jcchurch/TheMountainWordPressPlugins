@@ -1,5 +1,7 @@
 <?php
 
+namespace Mountain\Garden\Manage;
+
 /**
  * Pulls records from a database table based on a table_name and filters.
  *

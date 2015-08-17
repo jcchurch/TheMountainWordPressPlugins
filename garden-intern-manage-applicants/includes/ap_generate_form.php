@@ -1,5 +1,7 @@
 <?php
 
+namespace Mountain\Garden\Manage;
+
 require('display_filter_menu.php');
 require('display_table_of_applicants.php');
 require('display_garden_update_form.php');

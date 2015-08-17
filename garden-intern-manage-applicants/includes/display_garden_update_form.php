@@ -1,5 +1,7 @@
 <?php
 
+namespace Mountain\Garden\Manage;
+
 /*  Mountain Staff Update Form
  *   The labels of the form are displayed twice
  *   Initially when no id is selected, only the labels are displayed

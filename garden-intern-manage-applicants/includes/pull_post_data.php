@@ -1,5 +1,7 @@
 <?php
 
+namespace Mountain\Garden\Manage;
+
 /**
  * Returns the active identifier that should be examined
  * or updated. If there is no active identifier, returns

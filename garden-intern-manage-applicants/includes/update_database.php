@@ -1,5 +1,7 @@
 <?php
 
+namespace Mountain\Garden\Manage;
+
 /**
  * Updates an applicant's status. If the new status is the same
  * as the old status, no change is made.
