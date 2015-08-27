@@ -1,5 +1,7 @@
 <?php
 
+namespace Mountain\Retreat\Submission;
+
 function processFormData($messagePackage) {
 
     /* Process form data.  All edits and santizing has been done in the form */

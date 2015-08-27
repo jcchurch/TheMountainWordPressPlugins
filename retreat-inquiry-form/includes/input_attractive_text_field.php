@@ -1,5 +1,7 @@
 <?php
 
+namespace Mountain\Retreat\Submission;
+
 function inputAttractiveTextField($label, $name, $originalValue, $required=false) {
 
     $messagePackage = array();

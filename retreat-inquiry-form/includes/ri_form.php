@@ -1,5 +1,7 @@
 <?php
 
+namespace Mountain\Retreat\Submission;
+
 require('input_text_field.php');
 require('input_attractive_text_field.php');
 require('input_attractive_textarea.php');

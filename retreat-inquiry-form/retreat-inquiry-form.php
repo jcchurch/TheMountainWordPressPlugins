@@ -8,6 +8,8 @@ Author: Jay Kiskel (Edits by James Church)
 Author URI: http://studio205.tv
 */
 
+namespace Mountain\Retreat\Submission;
+
 require('includes/ri_admin_screen.php');
 require('includes/mtn_retreat_inquiry_create.php');
 require('includes/ri_form.php');
@@ -29,9 +31,9 @@ function ri_plugin_menu() {
 }
 
 /* add Retreat Inquiry Menu as a separate menu option on the Admin page */
-add_action('admin_menu','ri_plugin_menu');
+add_action('admin_menu',__NAMESPACE__.'\\ri_plugin_menu');
 
-register_activation_hook(__FILE__,'mtn_retreat_inquiry_create');
+register_activation_hook(__FILE__, __NAMESPACE__.'\\mtn_retreat_inquiry_create');
 
 function ri_shortcode() {
     ob_start();
@@ -40,4 +42,4 @@ function ri_shortcode() {
     return ob_get_clean();
 }
  
-add_shortcode( 'Retreat_Submission_Form', 'ri_shortcode' );
+add_shortcode( 'Retreat_Submission_Form', __NAMESPACE__.'\\ri_shortcode' );

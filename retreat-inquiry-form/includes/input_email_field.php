@@ -1,5 +1,7 @@
 <?php
 
+namespace Mountain\Retreat\Submission;
+
 /**
  * Checks post data for proper input and displays the input fields
  * which receive input for an email field.

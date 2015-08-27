@@ -1,5 +1,7 @@
 <?php
 
+namespace Mountain\Retreat\Submission;
+
 function mtn_retreat_inquiry_create() {
     /* 1. Create custom table mtn_retreat_inquiry that will hold retreat inquire submissions                    */
     /* 2. Note: this plugin uses the custom table mtn_meta_data that will hold comments made on submissions     */

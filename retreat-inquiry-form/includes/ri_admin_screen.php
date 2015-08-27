@@ -1,5 +1,7 @@
 <?php
 
+namespace Mountain\Retreat\Submission;
+
 /**
  * Create an Admin page screen for the Garden Internship form
  */
