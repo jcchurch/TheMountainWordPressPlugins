@@ -46,6 +46,15 @@
      </exec>
   </target>
 
+  <target name="uploadvolunteermanageform" description="Uploads volunteer-manage-form">
+     <exec executable="ncftpput">
+         <arg value="-R"/>
+         <arg value="mountain"/>
+         <arg value="mountaincenters/wp-content/plugins/"/>
+         <arg value="volunteer-manage-form"/>
+     </exec>
+  </target>
+
   <target name="uploadwhatsinthedatabase" description="Uploads new whats-in-the-database"> 
      <exec executable="ncftpput">
          <arg value="-R"/>
