@@ -27,7 +27,7 @@ require('includes/process_form_data.php');
 */
 
 function ri_plugin_menu() {
-    add_menu_page('Retreat Inquiry', 'Retreat Inquiry Form','manage_options','ri_applic_plugin','ri_admin_screen');
+    add_menu_page('Retreat Inquiry', 'Retreat Inquiry Form','manage_options','ri_applic_plugin',__NAMESPACE__.'\\ri_admin_screen');
 }
 
 /* add Retreat Inquiry Menu as a separate menu option on the Admin page */
